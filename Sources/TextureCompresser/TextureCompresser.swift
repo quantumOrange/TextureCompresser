@@ -26,10 +26,12 @@ public struct TextureCompresser {
     public func decompress(png:Data) throws -> MTLTexture {
         let usage = MTLTextureUsage(rawValue: MTLTextureUsage.renderTarget.rawValue | MTLTextureUsage.shaderRead.rawValue | MTLTextureUsage.shaderWrite.rawValue)
         
-        let options:[MTKTextureLoader.Option : Any] = [MTKTextureLoader.Option.textureUsage:usage.rawValue,
-                MTKTextureLoader.Option.SRGB:NSNumber(value: true),
-                MTKTextureLoader.Option.generateMipmaps:NSNumber(value: false),
-        ]
+        let options:[MTKTextureLoader.Option : Any] = [
+                                MTKTextureLoader.Option.textureUsage:usage.rawValue,
+                                MTKTextureLoader.Option.origin:MTKTextureLoader.Origin.flippedVertically.rawValue,
+                                MTKTextureLoader.Option.SRGB:NSNumber(value: true),
+                                MTKTextureLoader.Option.generateMipmaps:NSNumber(value: false),
+                            ]
         
         return try loader.newTexture(data:png,options:options)
     }

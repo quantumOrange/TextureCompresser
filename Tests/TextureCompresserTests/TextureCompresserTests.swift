@@ -25,7 +25,7 @@ final class CompressTextureTests: XCTestCase {
         
         var a = pixels
 
-        texture.replace(region: region, mipmapLevel: 0, withBytes: &a, bytesPerRow: (4 * MemoryLayout<UInt8>.size ))
+        texture.replace(region: region, mipmapLevel: 0, withBytes: &a, bytesPerRow: (4 * MemoryLayout<UInt8>.size )*d)
         
         return texture
     }
